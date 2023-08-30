@@ -18,8 +18,9 @@ class FileSplitter(object):
             raise TypeError('file_settings must be FileSettings')
         
         self.df = pd.read_csv(os.path.join(self.file_settings.path_name, self.file_settings.file_name),
-                            dtype=object,
-                            header=gv.header,
+                            dtype = object,
+                            header = None,
+                            names = gv.csv_columns,
                             chunksize=self.file_settings.row_size)
     
     def split(self, output_directory = '123'):
@@ -39,8 +40,9 @@ class FileSplitter(object):
                 df = next(self.df).to_csv(file_name, index=False, header=True)
                 counter += 1
 
-                if counter % 100 == 0:
+                if counter == 1:
                     print(f'file {counter} done')
+                    break
                     
             except StopIteration:
                 break
