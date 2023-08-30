@@ -54,7 +54,7 @@ class FileSplitter(object):
                                 
 def main():
     helper = FileSplitter(FileSettings(
-        file_name = gv.before_huge_csv_file,
+        file_name = gv.before_huge_csv_file_01,
         row_size = 1000
         ))
     helper.split('output')
