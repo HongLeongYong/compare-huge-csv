@@ -24,8 +24,8 @@ class FileSplitter(object):
                             chunksize=self.file_settings.row_size)
     
     def split(self, output_directory = '123'):
-        if not os.path.exists(output_directory):
-            os.mkdir(output_directory)
+        if not os.path.exists(os.path.join(self.file_settings.path_name, output_directory)):
+            os.mkdir(os.path.join(self.file_settings.path_name, output_directory))
         
         counter = 0
         while True:
