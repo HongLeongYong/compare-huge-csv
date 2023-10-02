@@ -22,8 +22,10 @@ class FileSplitter(object):
                             header = None,
                             names = gv.csv_columns,
                             chunksize=self.file_settings.row_size)
-    
-    def split(self, output_directory = '123'):
+        
+        
+        
+    def split(self, output_directory = 'output'):
         if not os.path.exists(os.path.join(self.file_settings.path_name, output_directory)):
             os.mkdir(os.path.join(self.file_settings.path_name, output_directory))
         
