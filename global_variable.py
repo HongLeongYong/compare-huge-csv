@@ -1,4 +1,8 @@
-before_huge_csv_file_01 = r'D:\data\csv\test.csv'
-after_huge_csv_file = r'D:\data\csv\test2.csv'
+"""This module contains global variables for CSV file paths and columns."""
 
-csv_columns = ('id', 'name', 'age', 'address', 'phone')
+# Paths for CSV files
+BEFORE_HUGE_CSV_FILE = r'D:\data\csv\test.csv'
+AFTER_HUGE_CSV_FILE = r'D:\data\csv\test2.csv'
+
+# Columns for CSV files
+CSV_COLUMNS = ('id', 'name', 'age', 'address', 'phone')

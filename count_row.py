@@ -18,5 +18,5 @@ def csv_count_rows(file_name):
     print(f'end, use time: {end_time - start_time} seconds')
     return row_index + 1
 
-print(f'before file has {csv_count_rows(gv.before_huge_csv_file_01)} rows')
-print(f'after file has {csv_count_rows(gv.after_huge_csv_file)} rows')
+print(f'before file has {csv_count_rows(gv.BEFORE_HUGE_CSV_FILE)} rows')
+print(f'after file has {csv_count_rows(gv.AFTER_HUGE_CSV_FILE)} rows')

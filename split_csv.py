@@ -23,7 +23,7 @@ class FileSplitter:
             os.path.join(self.file_settings.path_name, self.file_settings.file_name),
             dtype=object,
             header=None,
-            names=gv.csv_columns,
+            names=gv.CSV_COLUMNS,
             chunksize=self.file_settings.row_size
         )
 
@@ -44,7 +44,7 @@ class FileSplitter:
 def main():
     """Main function."""
     helper = FileSplitter(FileSettings(
-        file_name=gv.before_huge_csv_file_01,
+        file_name=gv.BEFORE_HUGE_CSV_FILE,
         row_size=1000
     ))
     helper.split('output')
