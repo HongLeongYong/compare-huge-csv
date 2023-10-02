@@ -1,64 +1,53 @@
-# 分割大 csv 文件成小 csv 文件 by row
-import time
-import global_variable as gv
+"""
+Module to split large CSV files into smaller CSV files by row.
+"""
+
 import os
 import pandas as pd
+import global_variable as gv
 
-class FileSettings(object):
+class FileSettings:
+    """Class to hold file settings."""
     def __init__(self, file_name, row_size=100):
         self.path_name = '\\'.join(file_name.split('\\')[:-1])
         self.file_name = file_name.split('\\')[-1]
         self.row_size = row_size
 
-class FileSplitter(object):
+class FileSplitter:
+    """Class to split files."""
     def __init__(self, file_settings):
-        self.file_settings = file_settings
-
-        if type(self.file_settings) != FileSettings:
+        if not isinstance(file_settings, FileSettings):
             raise TypeError('file_settings must be FileSettings')
-        
-        self.df = pd.read_csv(os.path.join(self.file_settings.path_name, self.file_settings.file_name),
-                            dtype = object,
-                            header = None,
-                            names = gv.csv_columns,
-                            chunksize=self.file_settings.row_size)
-        
-        
-        
-    def split(self, output_directory = 'output'):
+        self.file_settings = file_settings
+        self.data_frame = pd.read_csv(
+            os.path.join(self.file_settings.path_name, self.file_settings.file_name),
+            dtype=object,
+            header=None,
+            names=gv.csv_columns,
+            chunksize=self.file_settings.row_size
+        )
+
+    def split(self, output_directory='output'):
+        """Method to split the file."""
         if not os.path.exists(os.path.join(self.file_settings.path_name, output_directory)):
             os.mkdir(os.path.join(self.file_settings.path_name, output_directory))
-        
         counter = 0
-        while True:
-            try:
-                file_name = '{}/{}/{}_{}_row_{}.csv'.format(
-                    self.file_settings.path_name,
-                    output_directory,
-                    counter,
-                    self.file_settings.file_name.split('.')[0],
-                    self.file_settings.row_size)
-                
-                df = next(self.df).to_csv(file_name, index=False, header=True)
+        try:
+            for chunk in self.data_frame:
+                file_name = f'{self.file_settings.path_name}/{output_directory}/{counter}_{self.file_settings.file_name.split(".")[0]}_row_{self.file_settings.row_size}.csv'
+                chunk.to_csv(file_name, index=False, header=True)
                 counter += 1
+                print(f'file {counter} done')
+        except Exception as exc:
+            print('Error:', exc)
 
-                if counter == 1:
-                    print(f'file {counter} done')
-                    break
-                    
-            except StopIteration:
-                break
-            except Exception as e:
-                print('Error: ',e)
-                break
-
-        return True
-                                
 def main():
+    """Main function."""
     helper = FileSplitter(FileSettings(
-        file_name = gv.before_huge_csv_file_01,
-        row_size = 1000
-        ))
+        file_name=gv.before_huge_csv_file_01,
+        row_size=1000
+    ))
     helper.split('output')
 
-main()
+if __name__ == "__main__":
+    main()
