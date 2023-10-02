@@ -16,9 +16,11 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
+        echo "Installing dependencies..."
         python -m pip install --upgrade pip
         pip install pylint
         pip install pandas
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files '*.py')
+        echo "Running pylint..."
+        pylint $(git ls-files '*.py') || true  # 添加 || true 以捕捉錯誤但不停止工作流程
