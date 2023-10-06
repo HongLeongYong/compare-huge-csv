@@ -1,6 +1,6 @@
 ''' count huge csv rows '''
 import time
-import global_variable as gv
+import src.global_variable as gv
 
 def csv_count_rows(file_name):
     """

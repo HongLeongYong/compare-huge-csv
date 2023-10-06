@@ -4,7 +4,7 @@ Module to split large CSV files into smaller CSV files by row.
 
 import os
 import pandas as pd
-import global_variable as gv
+import src.global_variable as gv
 
 class FileSettings:
     """Class to hold file settings."""

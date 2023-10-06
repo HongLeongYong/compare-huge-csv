@@ -13,32 +13,34 @@
 pip install pandas
 ```
 
-在使用本工具之前，請先設定 `global_variable.py` 中的以下變數：
+在使用本工具之前，請先設定 `src/global_variable.py` 中的以下變數：
 1. `before_huge_csv_file` - 原始 CSV 文件的路徑
 2. `after_huge_csv_file` - 後續 CSV 文件的路徑
 3. `header` - CSV 文件的表頭
 
 ## 使用步驟
 
+所有源碼都放置在 src/ 目錄下。
+
 ### 拆分 CSV
-如果需要，您可以使用 `split_csv.py` 將大型 CSV 文件拆分為多個較小的 CSV 文件。每個拆分的文件將包含原始文件的表頭。
+如果需要，您可以使用 `src/split_csv.py` 將大型 CSV 文件拆分為多個較小的 CSV 文件。每個拆分的文件將包含原始文件的表頭。
 
 ```bash
-python split_csv.py
+python src/split_csv.py
 ```
 
 ### 計算行數
-執行 count_row.py 以計算 "before" 和 "after" 的 CSV 文件的行數。
+執行 `src/count_row.py` 以計算 "before" 和 "after" 的 CSV 文件的行數。
 
 ```bash
-python count_row.py
+python src/count_row.py
 ```
 
 ### 比較 CSV
-執行 compare.py 以進行兩個 CSV 文件的比較。
+執行 `src/compare.py` 以進行兩個 CSV 文件的比較。
 
 ```bash
-python compare.py
+python src/compare.py
 ```
 
 ## 許可證
