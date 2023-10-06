@@ -13,7 +13,7 @@
 pip install pandas
 ```
 
-在使用本工具之前，請先設定 `src/global_variable.py` 中的以下變數：
+在使用本工具之前，請先設定 [`src/global_variable.py`](src/global_variable.py) 中的以下變數：
 1. `before_huge_csv_file` - 原始 CSV 文件的路徑
 2. `after_huge_csv_file` - 後續 CSV 文件的路徑
 3. `header` - CSV 文件的表頭
